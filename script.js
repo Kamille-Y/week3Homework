@@ -1,19 +1,18 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-
+function createPassword() {
+  var password = newPassword();
+  var passwordInput= document.querySelector("#password");
+  passwordInput.value = password
+}
+ 
 //click function to listen for click begin password generator prompts
-generateBtn.addEventListener("click", function () {
-  var password = prompt("Would you like to create a password? (yes, or no):");
-  password = password.toLowerCase();
-  if (password === "yes") {
-    generatePassword();
-  }
-});
+generateBtn.addEventListener("click", createPassword);
 
-function generatePassword() {
+function newPassword() {
   var validsize= false;
   while (!validsize) {
-    var length = Number(prompt("How many characters would you like in your password to consist of? min 8, max 128"));
+    var length =  (prompt("How many characters would you like in your password to consist of? min 8, max 128"));
   // If not enough characters are selected ERROR! 
     if (length < 8) {
     alert("Password must be at least eight characters.");
@@ -21,31 +20,31 @@ function generatePassword() {
     alert("Password must have fewer than 128 character.")       
   } else {
     validsize = true;
+    
   }
   }
    // number prompt question
-  var Numerical = "";
-  var Number = prompt("Do you want numbers in your password? (yes, or no)");
+ 
+  var Number = prompt("Do you want numbers in your password? (yes, or no):");
+  var numericChar = "";
+  var numberopt = "";
   if (Number === "yes") {
-    var numberopt = "0123456789"
+    numberopt = "0123456789"
+    for (var a = 0; a < length; a ++) {
+      numberopt += numericChar.charAt(Math.floor(Math.random() * numericChar.length));
+      console.log (numberopt)
 
-    for (var c = 0; c < length; c++) {
-      Numerical += numberopt.charAt(Math.floor(Math.random() * numberopt.length));
-      console.log(Numerical)
     }
-  } else {
-    alert("Please include numbers for optimal securitey")
-
 
   } // specail characters prompt
 
   var special = "";
-  var characters = prompt("Do you want to special characters in your password? (yes, or no)");
+  var characters = prompt(" Will you include special characters in your password? (yes, or no)");
   
   if (characters === "yes") {
     characterSpecial = "`~!@$$%^&*<>:;?"
     var characterSet = "";
-    for (var d = 0; d < length; d++) {
+    for (var b = 0; b < length; b++) {
       special += characterSpecial.charAt(Math.floor(Math.random() * characterSet.length));
       console.log(special)
     } 
@@ -54,13 +53,13 @@ function generatePassword() {
   }
   
   // Uppercase prompt is a if / else statements
-  var Up = prompt("Do you want Uppercase letters in your password? ( yes, or no):");
+  var Upper = prompt("Do you want Uppercase letters in your password? ( yes, or no):");
 
   var upperSet = "";
   var Uppercase = "";
   if (Upper === "yes") {
     upperSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";   
-    for (var a = 0; a < length; a++) {
+    for (var c = 0; c < length; c++) {
       Uppercase += upperSet.charAt(Math.floor(Math.random() * upperSet.length));
       console.log(Uppercase)
     }
@@ -70,28 +69,30 @@ function generatePassword() {
   
  //lowercase prompt question dido the latter
 
-  var low = "";
-  var Lower = prompt("Do you want lowercase letters in your password? (yes, or no)");
-
+ 
+  var Low = prompt("Do you want lowercase letters in your password? (yes, or no)");
+  var lower = "";
   var lowerCase = "";
-  if (Lower === "yes") {
+  if (Low === "yes") {
     lowerCase = "abcdefghijklmnopqrstuvwxyz"
 
-    for (var b = 0; b < length; b++) {
-      low += lowerSet.charAt(Math.floor(Math.random() * lowerCase.length));
+    for (var c = 0; c < length; c++) {
+      lower += lowerCase.charAt(Math.floor(Math.random() * lowerCase.length));
       console.log()
     }
   } else {
-    alert("Combinations of letter casing adds security")
+    alert("Combinations of letter casings adds security")
   }  
    // final password generated 
-  var password = Uppercase.concat(valRet, Numeric, charaSet);
+  var password
+  var password = Uppercase.concat(lower, numberopt, special );
   console.log(password)
-  var finalPass = "";
+  var finalePassword = "";
   for (var e = 0; e < length; e++) {
-    finalPassWord += password.charAt(Math.floor(Math.random() * password.length));
-    console.log(finalPass)
+    finalePassword += password.charAt(Math.floor(Math.random() * password.length));
+    console.log(finalePassword)
   }
-  document.getElementById("password").textContent = finalPass;
-  alert(" Here is your new password!: " + finalPassWord);
+  document.getElementById("password").textContent = finalePassword;
+  alert(" Here is your new password!: " + finalePassword);
 }
+
